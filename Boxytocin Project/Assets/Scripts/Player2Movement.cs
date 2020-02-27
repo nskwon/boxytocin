@@ -8,7 +8,7 @@ public class Player2Movement : MonoBehaviour
     private Vector2 movement;
     private Rigidbody2D rb;
     private BoxCollider2D box;
-    private bool canMove;
+    private bool cannotMove;
     // Start is called before the first frame update
     void Start()
     {
@@ -21,12 +21,12 @@ public class Player2Movement : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal2");
         movement.y = Input.GetAxisRaw("Vertical2");
-        canMove = CheckCollisions(box, movement, 0.05f);
+        cannotMove = CheckCollisions(box, movement, 0.05f);
     }
 
     private void FixedUpdate()
     {
-        if (canMove)
+        if (cannotMove)
         {
             movement.x = 0;
             movement.y = 0;

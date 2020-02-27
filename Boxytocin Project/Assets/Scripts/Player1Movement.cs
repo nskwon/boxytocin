@@ -8,12 +8,14 @@ public class Player1Movement : MonoBehaviour
     private Vector2 movement;
     private Rigidbody2D rb;
     private BoxCollider2D box;
-    private bool canMove;
+    private bool cannotMove;
+    Animator anim;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         box = GetComponent<BoxCollider2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -21,12 +23,48 @@ public class Player1Movement : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal1");
         movement.y = Input.GetAxisRaw("Vertical1");
-        canMove = CheckCollisions(box, movement, 0.05f);
+        if (movement.x > 0 && movement.y == 0)
+        {
+            anim.SetBool("Right", true);
+        }
+        else if (movement.x < 0 && movement.y == 0)
+        {
+            anim.SetBool("Left", true);
+        }
+        else if (movement.x == 0 && movement.y > 0)
+        {
+            anim.SetBool("Up", true);
+        }
+        else if (movement.x == 0 && movement.y < 0)
+        {
+            anim.SetBool("Down", true);
+        }
+        else if (movement.x > 0 && movement.y > 0)
+        {
+            anim.SetBool("UpRight", true);
+        }
+        else if (movement.x < 0 && movement.y > 0)
+        {
+            anim.SetBool("UpLeft", true);
+        }
+        else if (movement.x < 0 && movement.y < 0)
+        {
+            anim.SetBool("DownLeft", true);
+        }
+        else if (movement.x > 0 && movement.y < 0)
+        {
+            anim.SetBool("DownRight", true);
+        }
+        else if (movement.x == 0 && movement.y == 0)
+        {
+            anim.SetBool("Idle", true);
+        }
+        cannotMove = CheckCollisions(box, movement, 0.05f);
     }
 
     private void FixedUpdate()
     {
-        if (canMove)
+        if (cannotMove)
         {
             movement.x = 0;
             movement.y = 0;
