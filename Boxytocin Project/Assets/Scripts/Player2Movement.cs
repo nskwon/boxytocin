@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player1Movement : MonoBehaviour
+public class Player2Movement : MonoBehaviour
 {
     public float moveSpeed = 5.0f;
     private Vector2 movement;
@@ -16,13 +16,13 @@ public class Player1Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal1");
-        movement.y = Input.GetAxisRaw("Vertical1");
+        movement.x = Input.GetAxisRaw("Horizontal2");
+        movement.y = Input.GetAxisRaw("Vertical2");
     }
 
     private void FixedUpdate()
     {
-        if(movement.x != 0 && movement.y != 0)
+        if (movement.x != 0 && movement.y != 0)
         {
             rb.MovePosition(rb.position + movement * (moveSpeed * 0.7f) * Time.fixedDeltaTime);
         }
