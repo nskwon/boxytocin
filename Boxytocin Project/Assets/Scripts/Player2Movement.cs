@@ -9,11 +9,13 @@ public class Player2Movement : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D box;
     private bool cannotMove;
+    Animator anim;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         box = GetComponent<BoxCollider2D>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -22,6 +24,140 @@ public class Player2Movement : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal2");
         movement.y = Input.GetAxisRaw("Vertical2");
         cannotMove = CheckCollisions(box, movement, 0.05f);
+
+        //Movement Animations
+        if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
+        {
+            anim.SetBool("Up", true);
+            anim.SetBool("UpLeft", false);
+            anim.SetBool("Down", false);
+            anim.SetBool("DownLeft", false);
+            anim.SetBool("UpRight", false);
+            anim.SetBool("Left", false);
+            anim.SetBool("DownRight", false);
+            anim.SetBool("Right", false);
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.DownArrow))
+        {
+            anim.SetBool("Up", false);
+            anim.SetBool("UpLeft", false);
+            anim.SetBool("Down", true);
+            anim.SetBool("DownLeft", false);
+            anim.SetBool("UpRight", false);
+            anim.SetBool("Left", false);
+            anim.SetBool("DownRight", false);
+            anim.SetBool("Right", false);
+        }
+        else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftArrow))
+        {
+            anim.SetBool("Up", false);
+            anim.SetBool("UpLeft", false);
+            anim.SetBool("Down", false);
+            anim.SetBool("DownLeft", false);
+            anim.SetBool("UpRight", false);
+            anim.SetBool("Left", true);
+            anim.SetBool("DownRight", false);
+            anim.SetBool("Right", false);
+        }
+        else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.RightArrow))
+        {
+            anim.SetBool("Up", false);
+            anim.SetBool("UpLeft", false);
+            anim.SetBool("Down", false);
+            anim.SetBool("DownLeft", false);
+            anim.SetBool("UpRight", false);
+            anim.SetBool("Left", false);
+            anim.SetBool("DownRight", false);
+            anim.SetBool("Right", true);
+        }
+        else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.LeftArrow))
+        {
+            anim.SetBool("Up", false);
+            anim.SetBool("UpLeft", true);
+            anim.SetBool("Down", false);
+            anim.SetBool("DownLeft", false);
+            anim.SetBool("UpRight", false);
+            anim.SetBool("Left", false);
+            anim.SetBool("DownRight", false);
+            anim.SetBool("Right", false);
+        }
+        else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.RightArrow))
+        {
+            anim.SetBool("Up", false);
+            anim.SetBool("UpLeft", false);
+            anim.SetBool("Down", false);
+            anim.SetBool("DownLeft", false);
+            anim.SetBool("UpRight", true);
+            anim.SetBool("Left", false);
+            anim.SetBool("DownRight", false);
+            anim.SetBool("Right", false);
+        }
+        else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.RightArrow))
+        {
+            anim.SetBool("Up", false);
+            anim.SetBool("UpLeft", false);
+            anim.SetBool("Down", false);
+            anim.SetBool("DownLeft", false);
+            anim.SetBool("UpRight", false);
+            anim.SetBool("Left", false);
+            anim.SetBool("DownRight", true);
+            anim.SetBool("Right", false);
+        }
+        else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftArrow))
+        {
+            anim.SetBool("Up", false);
+            anim.SetBool("UpLeft", false);
+            anim.SetBool("Down", false);
+            anim.SetBool("DownLeft", true);
+            anim.SetBool("UpRight", false);
+            anim.SetBool("Left", false);
+            anim.SetBool("DownRight", false);
+            anim.SetBool("Right", false);
+        }
+        else if (Input.GetKey(KeyCode.UpArrow))
+        {
+            anim.SetBool("Up", true);
+            anim.SetBool("UpLeft", false);
+            anim.SetBool("Down", false);
+            anim.SetBool("DownLeft", false);
+            anim.SetBool("UpRight", false);
+            anim.SetBool("Left", false);
+            anim.SetBool("DownRight", false);
+            anim.SetBool("Right", false);
+        }
+        else if (Input.GetKey(KeyCode.DownArrow))
+        {
+            anim.SetBool("Up", false);
+            anim.SetBool("UpLeft", false);
+            anim.SetBool("Down", true);
+            anim.SetBool("DownLeft", false);
+            anim.SetBool("UpRight", false);
+            anim.SetBool("Left", false);
+            anim.SetBool("DownRight", false);
+            anim.SetBool("Right", false);
+        }
+        else if (Input.GetKey(KeyCode.RightArrow))
+        {
+            anim.SetBool("Up", false);
+            anim.SetBool("UpLeft", false);
+            anim.SetBool("Down", false);
+            anim.SetBool("DownLeft", false);
+            anim.SetBool("UpRight", false);
+            anim.SetBool("Left", false);
+            anim.SetBool("DownRight", false);
+            anim.SetBool("Right", true);
+        }
+        else if (Input.GetKey(KeyCode.LeftArrow))
+        {
+            anim.SetBool("Up", false);
+            anim.SetBool("UpLeft", false);
+            anim.SetBool("Down", false);
+            anim.SetBool("DownLeft", false);
+            anim.SetBool("UpRight", false);
+            anim.SetBool("Left", true);
+            anim.SetBool("DownRight", false);
+            anim.SetBool("Right", false);
+        }
     }
 
     private void FixedUpdate()
