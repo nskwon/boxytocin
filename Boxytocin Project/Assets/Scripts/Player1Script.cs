@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player2Movement : MonoBehaviour
+public class Player1Script : MonoBehaviour
 {
     public float moveSpeed = 5.0f;
     private Vector2 movement;
@@ -21,12 +21,13 @@ public class Player2Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        movement.x = Input.GetAxisRaw("Horizontal2");
-        movement.y = Input.GetAxisRaw("Vertical2");
+        movement.x = Input.GetAxisRaw("Horizontal1");
+        movement.y = Input.GetAxisRaw("Vertical1");
+        
         cannotMove = CheckCollisions(box, movement, 0.05f);
 
         //Movement Animations
-        if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
+        if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
         {
             anim.SetBool("Up", true);
             anim.SetBool("UpLeft", false);
@@ -37,7 +38,7 @@ public class Player2Movement : MonoBehaviour
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
         }
-        else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
         {
             anim.SetBool("Up", false);
             anim.SetBool("UpLeft", false);
@@ -48,7 +49,7 @@ public class Player2Movement : MonoBehaviour
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
         }
-        else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
         {
             anim.SetBool("Up", false);
             anim.SetBool("UpLeft", false);
@@ -59,7 +60,7 @@ public class Player2Movement : MonoBehaviour
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
         }
-        else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
         {
             anim.SetBool("Up", false);
             anim.SetBool("UpLeft", false);
@@ -70,7 +71,7 @@ public class Player2Movement : MonoBehaviour
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", true);
         }
-        else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
         {
             anim.SetBool("Up", false);
             anim.SetBool("UpLeft", true);
@@ -81,7 +82,7 @@ public class Player2Movement : MonoBehaviour
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
         }
-        else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.RightArrow))
+        else if(Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
         {
             anim.SetBool("Up", false);
             anim.SetBool("UpLeft", false);
@@ -92,7 +93,7 @@ public class Player2Movement : MonoBehaviour
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
         }
-        else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
         {
             anim.SetBool("Up", false);
             anim.SetBool("UpLeft", false);
@@ -103,7 +104,7 @@ public class Player2Movement : MonoBehaviour
             anim.SetBool("DownRight", true);
             anim.SetBool("Right", false);
         }
-        else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
         {
             anim.SetBool("Up", false);
             anim.SetBool("UpLeft", false);
@@ -114,7 +115,7 @@ public class Player2Movement : MonoBehaviour
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
         }
-        else if (Input.GetKey(KeyCode.UpArrow))
+        else if (Input.GetKey(KeyCode.W))
         {
             anim.SetBool("Up", true);
             anim.SetBool("UpLeft", false);
@@ -125,7 +126,7 @@ public class Player2Movement : MonoBehaviour
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
         }
-        else if (Input.GetKey(KeyCode.DownArrow))
+        else if (Input.GetKey(KeyCode.S))
         {
             anim.SetBool("Up", false);
             anim.SetBool("UpLeft", false);
@@ -136,7 +137,7 @@ public class Player2Movement : MonoBehaviour
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.D))
         {
             anim.SetBool("Up", false);
             anim.SetBool("UpLeft", false);
@@ -147,7 +148,7 @@ public class Player2Movement : MonoBehaviour
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", true);
         }
-        else if (Input.GetKey(KeyCode.LeftArrow))
+        else if (Input.GetKey(KeyCode.A))
         {
             anim.SetBool("Up", false);
             anim.SetBool("UpLeft", false);
@@ -158,6 +159,7 @@ public class Player2Movement : MonoBehaviour
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
         }
+
     }
 
     private void FixedUpdate()
@@ -181,13 +183,13 @@ public class Player2Movement : MonoBehaviour
 
     private bool CheckCollisions(Collider2D moveCollider, Vector2 direction, float distance)
     {
-        if (moveCollider != null)
+        if(moveCollider != null)
         {
             RaycastHit2D[] hits = new RaycastHit2D[10];
             ContactFilter2D filter = new ContactFilter2D() { };
 
             int numHits = moveCollider.Cast(direction, filter, hits, distance);
-            for (int i = 0; i < numHits; i++)
+            for(int i = 0;i < numHits; i++)
             {
                 if (!hits[i].collider.isTrigger)
                 {
