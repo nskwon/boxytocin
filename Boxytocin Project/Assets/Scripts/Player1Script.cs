@@ -10,12 +10,15 @@ public class Player1Script : MonoBehaviour
     private BoxCollider2D box;
     private bool cannotMove;
     Animator anim;
+    HealthSystem player1Health = null;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         box = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
+        player1Health = FindObjectOfType<HealthSystem>();
+        player1Health.SetHealth(100);
     }
 
     // Update is called once per frame
