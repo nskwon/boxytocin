@@ -5,23 +5,27 @@ using UnityEngine;
 public class HealthSystem : MonoBehaviour
 {
     private int health;
+    private int baseHealth;
 
     public HealthSystem(int health)
     {
         this.health = health;
     }
 
-    public int GetHealth()
+    public int getHealth()
     {
         return health;
     }
 
-    public void SetHealth(int health)
+    public void addHealth(int value)
     {
-        this.health = health;
+        health += value;
+        if(health > baseHealth){
+            health = baseHealth;
+        }
     }
 
-    public void TakeDamage(int damageAmount)
+    public void takeDamage(int damageAmount)
     {
         health -= damageAmount;
     }

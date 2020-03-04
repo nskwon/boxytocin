@@ -18,7 +18,9 @@ public class Player1Script : MonoBehaviour
         box = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
         player1Health = FindObjectOfType<HealthSystem>();
-        player1Health.SetHealth(100);
+        if(player1Health != null){
+            player1Health.addHealth(100);
+        }
     }
 
     // Update is called once per frame
