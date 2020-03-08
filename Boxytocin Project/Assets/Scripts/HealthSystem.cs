@@ -1,11 +1,11 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HealthSystem : MonoBehaviour
 {
-    private int health;
-    private int baseHealth;
+    [SerializeField] private int health;
+    [SerializeField] private int baseHealth = 100;
 
     public HealthSystem(int health)
     {

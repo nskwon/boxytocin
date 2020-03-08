@@ -10,12 +10,17 @@ public class Player2Script : MonoBehaviour
     private BoxCollider2D box;
     private bool cannotMove;
     Animator anim;
+    HealthSystem player2Health = null;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         box = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
+        player2Health = FindObjectOfType<HealthSystem>();
+        if(player2Health != null){
+            player2Health.addHealth(100);
+        }
     }
 
     // Update is called once per frame
@@ -24,6 +29,10 @@ public class Player2Script : MonoBehaviour
         movement.x = Input.GetAxisRaw("Horizontal2");
         movement.y = Input.GetAxisRaw("Vertical2");
         cannotMove = CheckCollisions(box, movement, 0.05f);
+        
+        if(player2Health.getHealth() <= 0){
+            Destroy(this.gameObject);
+        }
 
         //Movement Animations
         if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
