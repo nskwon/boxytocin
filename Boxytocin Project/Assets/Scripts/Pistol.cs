@@ -1,4 +1,4 @@
-﻿using System.Collections;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +7,6 @@ public class Pistol : MonoBehaviour
     public Transform firePoint;
     public int damage = 10;
     public GameObject impactEffect;
-    public GameObject gameObject;
     void Update()
     {
         if(Input.GetButtonDown("Fire1")){

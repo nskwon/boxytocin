@@ -10,6 +10,14 @@ public class Player1Script : MonoBehaviour
     private BoxCollider2D box;
     private bool cannotMove;
     Animator anim;
+    private bool left;
+    private bool right;
+    private bool up;
+    private bool down;
+    private bool upLeft;
+    private bool upRight;
+    private bool downLeft;
+    private bool downRight;
     HealthSystem player1Health = null;
     // Start is called before the first frame update
     void Start()
@@ -42,6 +50,15 @@ public class Player1Script : MonoBehaviour
             anim.SetBool("Left", false);
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
+            up = true;
+            left = false;
+            right = false;
+            up = false;
+            down = false;
+            upLeft = false;
+            upRight = false;
+            downLeft = false;
+            downRight = false;
         }
         else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
         {
@@ -53,6 +70,14 @@ public class Player1Script : MonoBehaviour
             anim.SetBool("Left", false);
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
+            left = false;
+            right = false;
+            up = false;
+            down = true;
+            upLeft = false;
+            upRight = false;
+            downLeft = false;
+            downRight = false;
         }
         else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
         {
@@ -130,6 +155,14 @@ public class Player1Script : MonoBehaviour
             anim.SetBool("Left", false);
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
+            left = false;
+            right = false;
+            up = true;
+            down = false;
+            upLeft = false;
+            upRight = false;
+            downLeft = false;
+            downRight = false;
         }
         else if (Input.GetKey(KeyCode.S))
         {
@@ -141,6 +174,14 @@ public class Player1Script : MonoBehaviour
             anim.SetBool("Left", false);
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
+            left = false;
+            right = false;
+            up = false;
+            down = true;
+            upLeft = false;
+            upRight = false;
+            downLeft = false;
+            downRight = false;
         }
         else if (Input.GetKey(KeyCode.D))
         {
@@ -152,6 +193,14 @@ public class Player1Script : MonoBehaviour
             anim.SetBool("Left", false);
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", true);
+            left = false;
+            right = true;
+            up = false;
+            down = false;
+            upLeft = false;
+            upRight = false;
+            downLeft = false;
+            downRight = false;
         }
         else if (Input.GetKey(KeyCode.A))
         {
@@ -163,7 +212,16 @@ public class Player1Script : MonoBehaviour
             anim.SetBool("Left", true);
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
+            left = true;
+            right = false;
+            up = false;
+            down = false;
+            upLeft = false;
+            upRight = false;
+            downLeft = false;
+            downRight = false;
         }
+
 
     }
 
@@ -203,6 +261,10 @@ public class Player1Script : MonoBehaviour
             }
         }
         return false;
+    }
+    
+    private void flipHorizontal(bool direction){
+        
     }
 
 }
