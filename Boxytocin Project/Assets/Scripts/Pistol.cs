@@ -7,17 +7,18 @@ public class Pistol : MonoBehaviour
     public Transform firePoint;
     public int damage = 10;
     public GameObject impactEffect;
+    public LineRenderer lineRenderer;
     void Update()
     {
         if(transform.parent.tag == "Player1" && Input.GetButtonDown("Fire1")){
-            Shoot();
+            StartCoroutine(Shoot());
         }
-	else if(transform.parent.tag == "Player2" && Input.GetButtonDown("Fire2")){
-	    Shoot();
-	}
+	    else if(transform.parent.tag == "Player2" && Input.GetButtonDown("Fire2")){
+            StartCoroutine(Shoot());
+	    }
     }
 
-    void Shoot()
+    IEnumerator Shoot()
     {
         //Shooting logic
         RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
@@ -25,13 +26,31 @@ public class Pistol : MonoBehaviour
         if(hitInfo)
         {
 	    
+            Debug.Log("Hit Object");
             if(hitInfo.collider.tag == "Hittable" || hitInfo.collider.tag == "Player1" || hitInfo.collider.tag == "Player2")
             {
-		hitInfo.transform.SendMessageUpwards("takeDamage", damage);
+                Debug.Log("Take Damage");
+		        hitInfo.transform.SendMessageUpwards("takeDamage", damage);
             }
-            Instantiate(impactEffect, hitInfo.point, Quaternion.identity);
-
+            //Instantiate(impactEffect, hitInfo.point, Quaternion.identity);
+            lineRenderer.SetPosition(0, firePoint.position);
+            Debug.Log("Line sent out");
+            lineRenderer.SetPosition(1, hitInfo.point);
+            Debug.Log("Position set");
         }
+
+        else
+        {
+            lineRenderer.SetPosition(0, firePoint.position);                   
+            lineRenderer.SetPosition(1, firePoint.position + firePoint.right * 100);
+        }
+
+        lineRenderer.enabled = true;
+
+        //wait one frame
+        yield return new WaitForSeconds(0.02f);
+
+        lineRenderer.enabled = false;
         
     }
 
