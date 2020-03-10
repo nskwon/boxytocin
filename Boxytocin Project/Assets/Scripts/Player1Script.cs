@@ -5,19 +5,18 @@ using UnityEngine;
 public class Player1Script : MonoBehaviour
 {
     public float moveSpeed = 5.0f;
+    public int health = 100;
     private Vector2 movement;
     private Rigidbody2D rb;
     private BoxCollider2D box;
     private bool cannotMove;
     Animator anim;
-    HealthSystem player1Health = null;
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         box = GetComponent<BoxCollider2D>();
         anim = GetComponent<Animator>();
-        player1Health = FindObjectOfType<HealthSystem>();
     }
 
     // Update is called once per frame
@@ -25,8 +24,11 @@ public class Player1Script : MonoBehaviour
     {
         movement.x = Input.GetAxisRaw("Horizontal1");
         movement.y = Input.GetAxisRaw("Vertical1");
-        
         cannotMove = CheckCollisions(box, movement, 0.05f);
+
+	if(health <= 0){
+	    Destroy(this.gameObject);
+	}
 
         //Movement Animations
         if(Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
@@ -200,6 +202,10 @@ public class Player1Script : MonoBehaviour
             }
         }
         return false;
+    }
+
+    public void takeDamage(int damage){
+	health -= damage;
     }
 
 }

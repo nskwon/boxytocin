@@ -9,9 +9,12 @@ public class Pistol : MonoBehaviour
     public GameObject impactEffect;
     void Update()
     {
-        if(Input.GetButtonDown("Fire1")){
+        if(transform.parent.tag == "Player1" && Input.GetButtonDown("Fire1")){
             Shoot();
         }
+	else if(transform.parent.tag == "Player2" && Input.GetButtonDown("Fire2")){
+	    Shoot();
+	}
     }
 
     void Shoot()
@@ -21,11 +24,10 @@ public class Pistol : MonoBehaviour
         
         if(hitInfo)
         {
-            HealthSystem health = hitInfo.transform.GetComponent<HealthSystem>();
-
-            if(health != null)
+	    
+            if(hitInfo.collider.tag == "Hittable" || hitInfo.collider.tag == "Player1" || hitInfo.collider.tag == "Player2")
             {
-                health.takeDamage(damage);
+		hitInfo.transform.SendMessageUpwards("takeDamage", damage);
             }
             Instantiate(impactEffect, hitInfo.point, Quaternion.identity);
 
