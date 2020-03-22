@@ -10,6 +10,7 @@ public class Player1Script : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D box;
     private bool cannotMove;
+    private int direction;
     Animator anim;
     // Start is called before the first frame update
     void Start()
@@ -163,6 +164,8 @@ public class Player1Script : MonoBehaviour
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
         }
+        
+        
 
     }
 
@@ -205,7 +208,7 @@ public class Player1Script : MonoBehaviour
     }
 
     public void takeDamage(int damage){
-	health -= damage;
+	    health -= damage;
     }
 
 }

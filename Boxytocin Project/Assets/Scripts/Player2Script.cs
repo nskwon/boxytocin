@@ -10,6 +10,7 @@ public class Player2Script : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D box;
     private bool cannotMove;
+    private int position;
     Animator anim;
     // Start is called before the first frame update
     void Start()
@@ -29,7 +30,7 @@ public class Player2Script : MonoBehaviour
         if(health <= 0){
             Destroy(this.gameObject);
         }
-
+        /*
         //Movement Animations
         if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
         {
@@ -163,6 +164,13 @@ public class Player2Script : MonoBehaviour
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
         }
+        */
+
+        if (Input.GetButtonDown("left2"))
+        {
+            Debug.Log("Rotate left");
+            rotateLeft();
+        }
     }
 
     private void FixedUpdate()
@@ -204,7 +212,12 @@ public class Player2Script : MonoBehaviour
     }
 
     public void takeDamage(int damage){
-	health -= damage;
+	    health -= damage;
+    }
+
+    public void rotateLeft()
+    {
+        transform.Rotate(0f, 180f, 0f);
     }
 
 }
