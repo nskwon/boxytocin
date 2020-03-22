@@ -10,7 +10,8 @@ public class Player2Script : MonoBehaviour
     private Rigidbody2D rb;
     private BoxCollider2D box;
     private bool cannotMove;
-    private int position;
+    private bool isLeft;
+    private bool isRight;
     Animator anim;
     // Start is called before the first frame update
     void Start()
@@ -30,10 +31,11 @@ public class Player2Script : MonoBehaviour
         if(health <= 0){
             Destroy(this.gameObject);
         }
-        /*
+        
         //Movement Animations
         if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
         {
+            /*
             anim.SetBool("Up", true);
             anim.SetBool("UpLeft", false);
             anim.SetBool("Down", false);
@@ -42,9 +44,12 @@ public class Player2Script : MonoBehaviour
             anim.SetBool("Left", false);
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
+            */
+
         }
         else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.DownArrow))
         {
+            /*
             anim.SetBool("Up", false);
             anim.SetBool("UpLeft", false);
             anim.SetBool("Down", true);
@@ -53,9 +58,11 @@ public class Player2Script : MonoBehaviour
             anim.SetBool("Left", false);
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
+            */
         }
         else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftArrow))
         {
+            /*
             anim.SetBool("Up", false);
             anim.SetBool("UpLeft", false);
             anim.SetBool("Down", false);
@@ -64,9 +71,11 @@ public class Player2Script : MonoBehaviour
             anim.SetBool("Left", true);
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
+            */
         }
         else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.RightArrow))
         {
+            /*
             anim.SetBool("Up", false);
             anim.SetBool("UpLeft", false);
             anim.SetBool("Down", false);
@@ -75,9 +84,11 @@ public class Player2Script : MonoBehaviour
             anim.SetBool("Left", false);
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", true);
+            */
         }
         else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.LeftArrow))
         {
+            /*
             anim.SetBool("Up", false);
             anim.SetBool("UpLeft", true);
             anim.SetBool("Down", false);
@@ -86,9 +97,11 @@ public class Player2Script : MonoBehaviour
             anim.SetBool("Left", false);
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
+            */
         }
         else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.RightArrow))
         {
+            /*
             anim.SetBool("Up", false);
             anim.SetBool("UpLeft", false);
             anim.SetBool("Down", false);
@@ -97,9 +110,11 @@ public class Player2Script : MonoBehaviour
             anim.SetBool("Left", false);
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
+            */
         }
         else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.RightArrow))
         {
+            /*
             anim.SetBool("Up", false);
             anim.SetBool("UpLeft", false);
             anim.SetBool("Down", false);
@@ -108,9 +123,11 @@ public class Player2Script : MonoBehaviour
             anim.SetBool("Left", false);
             anim.SetBool("DownRight", true);
             anim.SetBool("Right", false);
+            */
         }
         else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftArrow))
         {
+            /*
             anim.SetBool("Up", false);
             anim.SetBool("UpLeft", false);
             anim.SetBool("Down", false);
@@ -119,9 +136,11 @@ public class Player2Script : MonoBehaviour
             anim.SetBool("Left", false);
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
+            */
         }
         else if (Input.GetKey(KeyCode.UpArrow))
         {
+            /*
             anim.SetBool("Up", true);
             anim.SetBool("UpLeft", false);
             anim.SetBool("Down", false);
@@ -130,9 +149,11 @@ public class Player2Script : MonoBehaviour
             anim.SetBool("Left", false);
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
+            */
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
+            /*
             anim.SetBool("Up", false);
             anim.SetBool("UpLeft", false);
             anim.SetBool("Down", true);
@@ -141,9 +162,11 @@ public class Player2Script : MonoBehaviour
             anim.SetBool("Left", false);
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
+            */
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
+            /*
             anim.SetBool("Up", false);
             anim.SetBool("UpLeft", false);
             anim.SetBool("Down", false);
@@ -152,9 +175,11 @@ public class Player2Script : MonoBehaviour
             anim.SetBool("Left", false);
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", true);
+            */
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
+            /*
             anim.SetBool("Up", false);
             anim.SetBool("UpLeft", false);
             anim.SetBool("Down", false);
@@ -163,14 +188,25 @@ public class Player2Script : MonoBehaviour
             anim.SetBool("Left", true);
             anim.SetBool("DownRight", false);
             anim.SetBool("Right", false);
+            */
         }
-        */
-
-        if (Input.GetButtonDown("left2"))
+        
+        if (Input.GetButtonDown("left2") && isLeft == false)
         {
             Debug.Log("Rotate left");
             rotateLeft();
+            isRight = false;
+            isLeft = true;
         }
+        else if(Input.GetButtonDown("right2") && isRight == false)
+        {
+            Debug.Log("Rotate right");
+            rotateRight();
+            isLeft = false;
+            isRight = true;
+        }
+        
+        
     }
 
     private void FixedUpdate()
@@ -216,6 +252,11 @@ public class Player2Script : MonoBehaviour
     }
 
     public void rotateLeft()
+    {
+        transform.Rotate(0f, 180f, 0f);
+    }
+
+    public void rotateRight()
     {
         transform.Rotate(0f, 180f, 0f);
     }
