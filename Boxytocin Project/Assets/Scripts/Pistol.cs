@@ -8,18 +8,43 @@ public class Pistol : MonoBehaviour
     public int damage = 10;
     public GameObject impactEffect;
     public LineRenderer lineRenderer;
-    private AudioSource shootSound;
+    public float timeBetweenShots = 0.5f;
+    private float timestamp;
+    public int maxAmmo = 10;
+    public int currentAmmo = -1;
+    public float timeBetweenReload = 1.0f;
+    public float reloadTime = 3.0f;
+    private bool isReloading = false;
+
     private void Start()
     {
-        shootSound = GetComponent<AudioSource>();
+        if(currentAmmo == -1)
+        {
+            currentAmmo = maxAmmo;
+        }
+
     }
     void Update()
     {
-        if(transform.parent.tag == "Player1" && Input.GetButtonDown("Fire1")){
-            StartCoroutine(Shoot());
+
+        if (isReloading)
+        {
+            return;
         }
-	    else if(transform.parent.tag == "Player2" && Input.GetButtonDown("Fire2")){
+
+        if (currentAmmo <= 0)
+        {
+            StartCoroutine(Reload());
+            return;
+        }
+        if (Time.time >= timestamp && transform.parent.tag == "Player1" && Input.GetButton("Fire1")){
             StartCoroutine(Shoot());
+            timestamp = Time.time + timeBetweenShots;
+            Debug.Log(currentAmmo);
+        }
+	    else if(Time.time >= timestamp && transform.parent.tag == "Player2" && Input.GetButton("Fire2")){
+            StartCoroutine(Shoot());
+            timestamp = Time.time + timeBetweenShots;
 	    }
     }
 
@@ -27,7 +52,7 @@ public class Pistol : MonoBehaviour
     {
         //Shooting logic
         RaycastHit2D hitInfo = Physics2D.Raycast(firePoint.position, firePoint.right);
-        
+        currentAmmo--;
         if(hitInfo)
         {
 	    
@@ -42,14 +67,14 @@ public class Pistol : MonoBehaviour
             Debug.Log("Line sent out");
             lineRenderer.SetPosition(1, hitInfo.point);
             Debug.Log("Position set");
-            shootSound.Play();
+            FindObjectOfType<AudioManager>().Play("PistolShoot");
         }
 
         else
         {
             lineRenderer.SetPosition(0, firePoint.position);                   
             lineRenderer.SetPosition(1, firePoint.position + firePoint.right * 100);
-            shootSound.Play();
+            FindObjectOfType<AudioManager>().Play("PistolShoot");
         }
 
         lineRenderer.enabled = true;
@@ -59,6 +84,16 @@ public class Pistol : MonoBehaviour
 
         lineRenderer.enabled = false;
 
+    }
+
+    IEnumerator Reload()
+    {
+        FindObjectOfType<AudioManager>().Play("PistolReload");
+        isReloading = true;
+        Debug.Log("Reloading...");
+        yield return new WaitForSeconds(reloadTime);
+        currentAmmo = maxAmmo;
+        isReloading = false;
     }
 
 }

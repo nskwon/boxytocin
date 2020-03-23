@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class WeaponController : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
     private bool isLeft;
     private bool isRight;
