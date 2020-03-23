@@ -8,6 +8,11 @@ public class Pistol : MonoBehaviour
     public int damage = 10;
     public GameObject impactEffect;
     public LineRenderer lineRenderer;
+    private AudioSource shootSound;
+    private void Start()
+    {
+        shootSound = GetComponent<AudioSource>();
+    }
     void Update()
     {
         if(transform.parent.tag == "Player1" && Input.GetButtonDown("Fire1")){
@@ -37,12 +42,14 @@ public class Pistol : MonoBehaviour
             Debug.Log("Line sent out");
             lineRenderer.SetPosition(1, hitInfo.point);
             Debug.Log("Position set");
+            shootSound.Play();
         }
 
         else
         {
             lineRenderer.SetPosition(0, firePoint.position);                   
             lineRenderer.SetPosition(1, firePoint.position + firePoint.right * 100);
+            shootSound.Play();
         }
 
         lineRenderer.enabled = true;
@@ -51,7 +58,7 @@ public class Pistol : MonoBehaviour
         yield return new WaitForSeconds(0.02f);
 
         lineRenderer.enabled = false;
-        
+
     }
 
 }
