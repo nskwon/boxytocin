@@ -121,6 +121,25 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &237137853 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4426040820765856443, guid: ef3356e59f7e5f34ab99b751d8077946,
+    type: 3}
+  m_PrefabInstance: {fileID: 4426040821672951828}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &237137859
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 237137853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90566dbbb81fd274d91246b9c489a138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainCamera: {fileID: 763875196}
 --- !u!1001 &317302776
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -329,6 +348,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 9ffe41cd68f514e6ba06c5782f0423d9, type: 3}
+--- !u!20 &763875196 stripped
+Camera:
+  m_CorrespondingSourceObject: {fileID: 216637057762034914, guid: bae679bac666ba046b8333aa4fcb884f,
+    type: 3}
+  m_PrefabInstance: {fileID: 216637057473330333}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &767279642 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4426040820765856423, guid: ef3356e59f7e5f34ab99b751d8077946,
@@ -359,6 +384,25 @@ LineRenderer:
     type: 3}
   m_PrefabInstance: {fileID: 3355161113246150908}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &2145073967 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8679606542992593680, guid: ce689d679547ee744b99761de09e3179,
+    type: 3}
+  m_PrefabInstance: {fileID: 8679606544727530143}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2145073973
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2145073967}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 90566dbbb81fd274d91246b9c489a138, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  MainCamera: {fileID: 763875196}
 --- !u!1001 &216637057473330333
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -425,6 +469,26 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Main Camera
+      objectReference: {fileID: 0}
+    - target: {fileID: 216637057762034914, guid: bae679bac666ba046b8333aa4fcb884f,
+        type: 3}
+      propertyPath: m_BackGroundColor.r
+      value: 0.5711552
+      objectReference: {fileID: 0}
+    - target: {fileID: 216637057762034914, guid: bae679bac666ba046b8333aa4fcb884f,
+        type: 3}
+      propertyPath: m_BackGroundColor.g
+      value: 0.66088414
+      objectReference: {fileID: 0}
+    - target: {fileID: 216637057762034914, guid: bae679bac666ba046b8333aa4fcb884f,
+        type: 3}
+      propertyPath: m_BackGroundColor.b
+      value: 0.8018868
+      objectReference: {fileID: 0}
+    - target: {fileID: 216637057762034914, guid: bae679bac666ba046b8333aa4fcb884f,
+        type: 3}
+      propertyPath: orthographic
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: bae679bac666ba046b8333aa4fcb884f, type: 3}
