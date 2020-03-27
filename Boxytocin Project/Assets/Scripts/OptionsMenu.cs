@@ -11,6 +11,7 @@ public class OptionsMenu : MonoBehaviour
     public TMPro.TMP_Dropdown resolutionDropdown;
     Resolution[] resolutions;
 
+
     private void Start()
     {
         resolutions = Screen.resolutions;
@@ -55,6 +56,7 @@ public class OptionsMenu : MonoBehaviour
     public void SetFullScreen(bool isFullScreen)
     {
         Screen.fullScreen = isFullScreen;
+
     }
 
 }
