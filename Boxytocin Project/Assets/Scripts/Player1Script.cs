@@ -6,13 +6,16 @@ public class Player1Script : MonoBehaviour
 {
     public float moveSpeed = 5.0f;
     public int maxHealth = 100;
+    public float respawnDelay = 5.0f;
     public int currentHealth;
+    public Transform respawnPoint1;
     private Vector2 movement;
     private Rigidbody2D rb;
     private BoxCollider2D box;
     private bool cannotMove;
-    private int direction;
     public HealthBar healthbar;
+    public static bool alive;
+
     Animator anim;
     // Start is called before the first frame update
     void Start()
@@ -22,6 +25,7 @@ public class Player1Script : MonoBehaviour
         anim = GetComponent<Animator>();
         currentHealth = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
+        alive = true;
     }
 
     // Update is called once per frame
@@ -30,150 +34,152 @@ public class Player1Script : MonoBehaviour
         if (PauseMenu.GameIsPaused == false)
         {
 
+            if (alive)
+            {
+                movement.x = Input.GetAxisRaw("Horizontal1");
+                movement.y = Input.GetAxisRaw("Vertical1");
+                cannotMove = CheckCollisions(box, movement, 0.05f);
 
-            movement.x = Input.GetAxisRaw("Horizontal1");
-            movement.y = Input.GetAxisRaw("Vertical1");
-            cannotMove = CheckCollisions(box, movement, 0.05f);
+                if (currentHealth <= 0)
+                {
+                    alive = false;
+                    StartCoroutine("Respawn");
+                }
 
-            if (currentHealth <= 0)
-            {
-                Destroy(this.gameObject);
+                //Movement Animations
+                if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
+                {
+                    anim.SetBool("Up", true);
+                    anim.SetBool("UpLeft", false);
+                    anim.SetBool("Down", false);
+                    anim.SetBool("DownLeft", false);
+                    anim.SetBool("UpRight", false);
+                    anim.SetBool("Left", false);
+                    anim.SetBool("DownRight", false);
+                    anim.SetBool("Right", false);
+                }
+                else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
+                {
+                    anim.SetBool("Up", false);
+                    anim.SetBool("UpLeft", false);
+                    anim.SetBool("Down", true);
+                    anim.SetBool("DownLeft", false);
+                    anim.SetBool("UpRight", false);
+                    anim.SetBool("Left", false);
+                    anim.SetBool("DownRight", false);
+                    anim.SetBool("Right", false);
+                }
+                else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+                {
+                    anim.SetBool("Up", false);
+                    anim.SetBool("UpLeft", false);
+                    anim.SetBool("Down", false);
+                    anim.SetBool("DownLeft", false);
+                    anim.SetBool("UpRight", false);
+                    anim.SetBool("Left", true);
+                    anim.SetBool("DownRight", false);
+                    anim.SetBool("Right", false);
+                }
+                else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+                {
+                    anim.SetBool("Up", false);
+                    anim.SetBool("UpLeft", false);
+                    anim.SetBool("Down", false);
+                    anim.SetBool("DownLeft", false);
+                    anim.SetBool("UpRight", false);
+                    anim.SetBool("Left", false);
+                    anim.SetBool("DownRight", false);
+                    anim.SetBool("Right", true);
+                }
+                else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
+                {
+                    anim.SetBool("Up", false);
+                    anim.SetBool("UpLeft", true);
+                    anim.SetBool("Down", false);
+                    anim.SetBool("DownLeft", false);
+                    anim.SetBool("UpRight", false);
+                    anim.SetBool("Left", false);
+                    anim.SetBool("DownRight", false);
+                    anim.SetBool("Right", false);
+                }
+                else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
+                {
+                    anim.SetBool("Up", false);
+                    anim.SetBool("UpLeft", false);
+                    anim.SetBool("Down", false);
+                    anim.SetBool("DownLeft", false);
+                    anim.SetBool("UpRight", true);
+                    anim.SetBool("Left", false);
+                    anim.SetBool("DownRight", false);
+                    anim.SetBool("Right", false);
+                }
+                else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+                {
+                    anim.SetBool("Up", false);
+                    anim.SetBool("UpLeft", false);
+                    anim.SetBool("Down", false);
+                    anim.SetBool("DownLeft", false);
+                    anim.SetBool("UpRight", false);
+                    anim.SetBool("Left", false);
+                    anim.SetBool("DownRight", true);
+                    anim.SetBool("Right", false);
+                }
+                else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+                {
+                    anim.SetBool("Up", false);
+                    anim.SetBool("UpLeft", false);
+                    anim.SetBool("Down", false);
+                    anim.SetBool("DownLeft", true);
+                    anim.SetBool("UpRight", false);
+                    anim.SetBool("Left", false);
+                    anim.SetBool("DownRight", false);
+                    anim.SetBool("Right", false);
+                }
+                else if (Input.GetKey(KeyCode.W))
+                {
+                    anim.SetBool("Up", true);
+                    anim.SetBool("UpLeft", false);
+                    anim.SetBool("Down", false);
+                    anim.SetBool("DownLeft", false);
+                    anim.SetBool("UpRight", false);
+                    anim.SetBool("Left", false);
+                    anim.SetBool("DownRight", false);
+                    anim.SetBool("Right", false);
+                }
+                else if (Input.GetKey(KeyCode.S))
+                {
+                    anim.SetBool("Up", false);
+                    anim.SetBool("UpLeft", false);
+                    anim.SetBool("Down", true);
+                    anim.SetBool("DownLeft", false);
+                    anim.SetBool("UpRight", false);
+                    anim.SetBool("Left", false);
+                    anim.SetBool("DownRight", false);
+                    anim.SetBool("Right", false);
+                }
+                else if (Input.GetKey(KeyCode.D))
+                {
+                    anim.SetBool("Up", false);
+                    anim.SetBool("UpLeft", false);
+                    anim.SetBool("Down", false);
+                    anim.SetBool("DownLeft", false);
+                    anim.SetBool("UpRight", false);
+                    anim.SetBool("Left", false);
+                    anim.SetBool("DownRight", false);
+                    anim.SetBool("Right", true);
+                }
+                else if (Input.GetKey(KeyCode.A))
+                {
+                    anim.SetBool("Up", false);
+                    anim.SetBool("UpLeft", false);
+                    anim.SetBool("Down", false);
+                    anim.SetBool("DownLeft", false);
+                    anim.SetBool("UpRight", false);
+                    anim.SetBool("Left", true);
+                    anim.SetBool("DownRight", false);
+                    anim.SetBool("Right", false);
+                }
             }
-
-            //Movement Animations
-            if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
-            {
-                anim.SetBool("Up", true);
-                anim.SetBool("UpLeft", false);
-                anim.SetBool("Down", false);
-                anim.SetBool("DownLeft", false);
-                anim.SetBool("UpRight", false);
-                anim.SetBool("Left", false);
-                anim.SetBool("DownRight", false);
-                anim.SetBool("Right", false);
-            }
-            else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
-            {
-                anim.SetBool("Up", false);
-                anim.SetBool("UpLeft", false);
-                anim.SetBool("Down", true);
-                anim.SetBool("DownLeft", false);
-                anim.SetBool("UpRight", false);
-                anim.SetBool("Left", false);
-                anim.SetBool("DownRight", false);
-                anim.SetBool("Right", false);
-            }
-            else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
-            {
-                anim.SetBool("Up", false);
-                anim.SetBool("UpLeft", false);
-                anim.SetBool("Down", false);
-                anim.SetBool("DownLeft", false);
-                anim.SetBool("UpRight", false);
-                anim.SetBool("Left", true);
-                anim.SetBool("DownRight", false);
-                anim.SetBool("Right", false);
-            }
-            else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
-            {
-                anim.SetBool("Up", false);
-                anim.SetBool("UpLeft", false);
-                anim.SetBool("Down", false);
-                anim.SetBool("DownLeft", false);
-                anim.SetBool("UpRight", false);
-                anim.SetBool("Left", false);
-                anim.SetBool("DownRight", false);
-                anim.SetBool("Right", true);
-            }
-            else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
-            {
-                anim.SetBool("Up", false);
-                anim.SetBool("UpLeft", true);
-                anim.SetBool("Down", false);
-                anim.SetBool("DownLeft", false);
-                anim.SetBool("UpRight", false);
-                anim.SetBool("Left", false);
-                anim.SetBool("DownRight", false);
-                anim.SetBool("Right", false);
-            }
-            else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
-            {
-                anim.SetBool("Up", false);
-                anim.SetBool("UpLeft", false);
-                anim.SetBool("Down", false);
-                anim.SetBool("DownLeft", false);
-                anim.SetBool("UpRight", true);
-                anim.SetBool("Left", false);
-                anim.SetBool("DownRight", false);
-                anim.SetBool("Right", false);
-            }
-            else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
-            {
-                anim.SetBool("Up", false);
-                anim.SetBool("UpLeft", false);
-                anim.SetBool("Down", false);
-                anim.SetBool("DownLeft", false);
-                anim.SetBool("UpRight", false);
-                anim.SetBool("Left", false);
-                anim.SetBool("DownRight", true);
-                anim.SetBool("Right", false);
-            }
-            else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
-            {
-                anim.SetBool("Up", false);
-                anim.SetBool("UpLeft", false);
-                anim.SetBool("Down", false);
-                anim.SetBool("DownLeft", true);
-                anim.SetBool("UpRight", false);
-                anim.SetBool("Left", false);
-                anim.SetBool("DownRight", false);
-                anim.SetBool("Right", false);
-            }
-            else if (Input.GetKey(KeyCode.W))
-            {
-                anim.SetBool("Up", true);
-                anim.SetBool("UpLeft", false);
-                anim.SetBool("Down", false);
-                anim.SetBool("DownLeft", false);
-                anim.SetBool("UpRight", false);
-                anim.SetBool("Left", false);
-                anim.SetBool("DownRight", false);
-                anim.SetBool("Right", false);
-            }
-            else if (Input.GetKey(KeyCode.S))
-            {
-                anim.SetBool("Up", false);
-                anim.SetBool("UpLeft", false);
-                anim.SetBool("Down", true);
-                anim.SetBool("DownLeft", false);
-                anim.SetBool("UpRight", false);
-                anim.SetBool("Left", false);
-                anim.SetBool("DownRight", false);
-                anim.SetBool("Right", false);
-            }
-            else if (Input.GetKey(KeyCode.D))
-            {
-                anim.SetBool("Up", false);
-                anim.SetBool("UpLeft", false);
-                anim.SetBool("Down", false);
-                anim.SetBool("DownLeft", false);
-                anim.SetBool("UpRight", false);
-                anim.SetBool("Left", false);
-                anim.SetBool("DownRight", false);
-                anim.SetBool("Right", true);
-            }
-            else if (Input.GetKey(KeyCode.A))
-            {
-                anim.SetBool("Up", false);
-                anim.SetBool("UpLeft", false);
-                anim.SetBool("Down", false);
-                anim.SetBool("DownLeft", false);
-                anim.SetBool("UpRight", false);
-                anim.SetBool("Left", true);
-                anim.SetBool("DownRight", false);
-                anim.SetBool("Right", false);
-            }
-
         }
 
     }
@@ -219,6 +225,17 @@ public class Player1Script : MonoBehaviour
     public void takeDamage(int damage){
 	    currentHealth -= damage;
         healthbar.SetHealth(currentHealth);
+    }
+
+    IEnumerator Respawn()
+    {
+        movement.x = 0;
+        movement.y = 0;
+        yield return new WaitForSeconds(respawnDelay);
+        gameObject.transform.position = respawnPoint1.position;
+        currentHealth = maxHealth;
+        healthbar.SetHealth(currentHealth);
+        alive = true;
     }
 
 }

@@ -28,27 +28,66 @@ public class Pistol : MonoBehaviour
     {
         if (PauseMenu.GameIsPaused == false)
         {
-
-            if (isReloading)
+            if (Player1Script.alive && transform.parent.tag == "Player1")
             {
+
+                if (isReloading)
+                {
+                    return;
+                }
+
+                if (currentAmmo <= 0)
+                {
+                    StartCoroutine(Reload());
+                    return;
+                }
+                if (Time.time >= timestamp && transform.parent.tag == "Player1" && Input.GetButton("Fire1"))
+                {
+                    StartCoroutine(Shoot());
+                    timestamp = Time.time + timeBetweenShots;
+                    Debug.Log(currentAmmo);
+                }
+                else if (Time.time >= timestamp && transform.parent.tag == "Player2" && Input.GetButton("Fire2"))
+                {
+                    StartCoroutine(Shoot());
+                    timestamp = Time.time + timeBetweenShots;
+                }
+            }
+            else if(!Player1Script.alive && transform.parent.tag == "Player1")
+            {
+                refillAmmo();
                 return;
             }
 
-            if (currentAmmo <= 0)
+            if (Player2Script.alive && transform.parent.tag == "Player2")
             {
-                StartCoroutine(Reload());
+
+                if (isReloading)
+                {
+                    return;
+                }
+
+                if (currentAmmo <= 0)
+                {
+                    StartCoroutine(Reload());
+                    return;
+                }
+                if (Time.time >= timestamp && transform.parent.tag == "Player1" && Input.GetButton("Fire1"))
+                {
+                    StartCoroutine(Shoot());
+                    timestamp = Time.time + timeBetweenShots;
+                    Debug.Log(currentAmmo);
+                }
+                else if (Time.time >= timestamp && transform.parent.tag == "Player2" && Input.GetButton("Fire2"))
+                {
+                    StartCoroutine(Shoot());
+                    timestamp = Time.time + timeBetweenShots;
+                }
+            }
+            else if (!Player2Script.alive && transform.parent.tag == "Player2")
+            {
+                refillAmmo();
                 return;
-            }
-            if (Time.time >= timestamp && transform.parent.tag == "Player1" && Input.GetButton("Fire1"))
-            {
-                StartCoroutine(Shoot());
-                timestamp = Time.time + timeBetweenShots;
-                Debug.Log(currentAmmo);
-            }
-            else if (Time.time >= timestamp && transform.parent.tag == "Player2" && Input.GetButton("Fire2"))
-            {
-                StartCoroutine(Shoot());
-                timestamp = Time.time + timeBetweenShots;
             }
         }
     }
@@ -99,6 +138,11 @@ public class Pistol : MonoBehaviour
         yield return new WaitForSeconds(reloadTime);
         currentAmmo = maxAmmo;
         isReloading = false;
+    }
+
+    public void refillAmmo()
+    {
+        currentAmmo = maxAmmo;
     }
 
 }
