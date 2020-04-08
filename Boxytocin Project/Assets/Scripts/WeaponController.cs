@@ -30,111 +30,116 @@ public class WeaponController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Player1Script.alive)
+        if (!PauseMenu.GameIsPaused && !CountdownHandler.gameOver)
         {
-            if (transform.parent != null && transform.parent.tag == "Player1")
+
+
+            if (Player1Script.alive)
             {
-                if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
+                if (transform.parent != null && transform.parent.tag == "Player1")
                 {
-                    rotateUp();
-                }
-                else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
-                {
-                    rotateDown();
-                }
-                else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
-                {
-                    rotateLeft();
-                }
-                else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
-                {
-                    rotateRight();
-                }
-                else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
-                {
-                    rotateUpLeft();
-                }
-                else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
-                {
-                    rotateUpRight();
-                }
-                else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
-                {
-                    rotateDownRight();
-                }
-                else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
-                {
-                    rotateDownLeft();
-                }
-                else if (Input.GetKey(KeyCode.W))
-                {
-                    rotateUp();
-                }
-                else if (Input.GetKey(KeyCode.S))
-                {
-                    rotateDown();
-                }
-                else if (Input.GetKey(KeyCode.D))
-                {
-                    rotateRight();
-                }
-                else if (Input.GetKey(KeyCode.A))
-                {
-                    rotateLeft();
+                    if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.W))
+                    {
+                        rotateUp();
+                    }
+                    else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
+                    {
+                        rotateDown();
+                    }
+                    else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+                    {
+                        rotateLeft();
+                    }
+                    else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+                    {
+                        rotateRight();
+                    }
+                    else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
+                    {
+                        rotateUpLeft();
+                    }
+                    else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
+                    {
+                        rotateUpRight();
+                    }
+                    else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
+                    {
+                        rotateDownRight();
+                    }
+                    else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
+                    {
+                        rotateDownLeft();
+                    }
+                    else if (Input.GetKey(KeyCode.W))
+                    {
+                        rotateUp();
+                    }
+                    else if (Input.GetKey(KeyCode.S))
+                    {
+                        rotateDown();
+                    }
+                    else if (Input.GetKey(KeyCode.D))
+                    {
+                        rotateRight();
+                    }
+                    else if (Input.GetKey(KeyCode.A))
+                    {
+                        rotateLeft();
+                    }
                 }
             }
-        }
-        if (Player2Script.alive)
-        {
-            if (transform.parent != null && transform.parent.tag == "Player2")
+            if (Player2Script.alive)
             {
-                if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
+                if (transform.parent != null && transform.parent.tag == "Player2")
                 {
-                    rotateUp();
-                }
-                else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.DownArrow))
-                {
-                    rotateDown();
-                }
-                else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftArrow))
-                {
-                    rotateLeft();
-                }
-                else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.RightArrow))
-                {
-                    rotateRight();
-                }
-                else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.LeftArrow))
-                {
-                    rotateUpLeft();
-                }
-                else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.RightArrow))
-                {
-                    rotateUpRight();
-                }
-                else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.RightArrow))
-                {
-                    rotateDownRight();
-                }
-                else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftArrow))
-                {
-                    rotateDownLeft();
-                }
-                else if (Input.GetKey(KeyCode.UpArrow))
-                {
-                    rotateUp();
-                }
-                else if (Input.GetKey(KeyCode.DownArrow))
-                {
-                    rotateDown();
-                }
-                else if (Input.GetKey(KeyCode.RightArrow))
-                {
-                    rotateRight();
-                }
-                else if (Input.GetKey(KeyCode.LeftArrow))
-                {
-                    rotateLeft();
+                    if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
+                    {
+                        rotateUp();
+                    }
+                    else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.DownArrow))
+                    {
+                        rotateDown();
+                    }
+                    else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftArrow))
+                    {
+                        rotateLeft();
+                    }
+                    else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.RightArrow))
+                    {
+                        rotateRight();
+                    }
+                    else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.LeftArrow))
+                    {
+                        rotateUpLeft();
+                    }
+                    else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.RightArrow))
+                    {
+                        rotateUpRight();
+                    }
+                    else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.RightArrow))
+                    {
+                        rotateDownRight();
+                    }
+                    else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftArrow))
+                    {
+                        rotateDownLeft();
+                    }
+                    else if (Input.GetKey(KeyCode.UpArrow))
+                    {
+                        rotateUp();
+                    }
+                    else if (Input.GetKey(KeyCode.DownArrow))
+                    {
+                        rotateDown();
+                    }
+                    else if (Input.GetKey(KeyCode.RightArrow))
+                    {
+                        rotateRight();
+                    }
+                    else if (Input.GetKey(KeyCode.LeftArrow))
+                    {
+                        rotateLeft();
+                    }
                 }
             }
         }

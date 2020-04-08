@@ -16,6 +16,7 @@ public class Player2Script : MonoBehaviour
     public HealthBar healthbar;
     public static bool alive;
     Animator anim;
+    public static int player2Score;
 
     // Start is called before the first frame update
     void Start()
@@ -31,7 +32,7 @@ public class Player2Script : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (PauseMenu.GameIsPaused == false)
+        if (!PauseMenu.GameIsPaused && !CountdownHandler.gameOver)
         {
 
             if (alive)
@@ -44,6 +45,7 @@ public class Player2Script : MonoBehaviour
                 if (currentHealth <= 0)
                 {
                     alive = false;
+                    Player1Script.player1Score++;
                     StartCoroutine("Respawn");
                 }
 

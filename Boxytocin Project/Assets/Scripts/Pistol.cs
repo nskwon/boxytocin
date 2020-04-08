@@ -31,7 +31,7 @@ public class Pistol : MonoBehaviour
     }
     void Update()
     {
-        if (PauseMenu.GameIsPaused == false)
+        if (!PauseMenu.GameIsPaused && !CountdownHandler.gameOver)
         {
             if (Player1Script.alive && transform.parent.tag == "Player1")
             {
