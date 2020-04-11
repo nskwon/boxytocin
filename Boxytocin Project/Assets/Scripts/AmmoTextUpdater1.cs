@@ -8,6 +8,7 @@ public class AmmoTextUpdater1 : MonoBehaviour
     // Start is called before the first frame update
     private TMPro.TMP_Text ammoText;
     public int ammoCountPlayer1;
+    public string player1Weapon;
     void Start()
     {
         ammoText = GetComponent<TMPro.TMP_Text>();
@@ -16,7 +17,8 @@ public class AmmoTextUpdater1 : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        ammoCountPlayer1 = Pistol.currentAmmoPlayer1;
-        ammoText.text = "Pistol: " + ammoCountPlayer1.ToString();
+        ammoCountPlayer1 = BaseWeapon.currentAmmoPlayer1;
+        player1Weapon = BaseWeapon.weaponName1;
+        ammoText.text = player1Weapon + ": " + ammoCountPlayer1.ToString();
     }
 }

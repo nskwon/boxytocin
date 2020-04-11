@@ -4,15 +4,16 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public int damage;
+    public float fireRate;
+    public float reloadTime;
+    public int maxAmmo;
 
-    // Update is called once per frame
-    void Update()
+    public Weapon(int damage, float fireRate, float reloadTime, int maxAmmo)
     {
-        
+        this.damage = damage;
+        this.fireRate = fireRate;
+        this.reloadTime = reloadTime;
+        this.maxAmmo = maxAmmo;
     }
 }

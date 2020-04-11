@@ -2,30 +2,37 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Pistol : MonoBehaviour
+public class BaseWeapon : MonoBehaviour
 {
     public Transform firePoint;
     public int damage = 10;
     public GameObject impactEffect;
     public LineRenderer lineRenderer;
-    public float timeBetweenShots = 0.5f;
-    private float timestamp;
+    public float fireRate = 0.5f;
+    private float reloadTimeStamp;
     public int maxAmmo = 10;
     public static int currentAmmoPlayer1 = -1;
     public static int currentAmmoPlayer2 = -1;
-    public float timeBetweenReload = 1.0f;
     public float reloadTime = 3.0f;
+    public string shootAudio;
+    public string reloadAudio;
     private bool isReloading = false;
+    public static string weaponName1;
+    public static string weaponName2;
+
+
 
     private void Start()
     {
         if(currentAmmoPlayer1 == -1 && transform.parent.tag == "Player1")
         {
             currentAmmoPlayer1 = maxAmmo;
+            weaponName1 = this.name;
         }
         if(currentAmmoPlayer2 == -1 && transform.parent.tag == "Player2")
         {
             currentAmmoPlayer2 = maxAmmo;
+            weaponName2 = this.name;
         }
 
     }
@@ -46,16 +53,16 @@ public class Pistol : MonoBehaviour
                     StartCoroutine(Reload1());
                     return;
                 }
-                if (Time.time >= timestamp && transform.parent.tag == "Player1" && Input.GetButton("Fire1"))
+                if (Time.time >= reloadTimeStamp && transform.parent.tag == "Player1" && Input.GetButton("Fire1"))
                 {
                     StartCoroutine(Shoot1());
-                    timestamp = Time.time + timeBetweenShots;
+                    reloadTimeStamp = Time.time + fireRate;
                     Debug.Log(currentAmmoPlayer1);
                 }
-                else if (Time.time >= timestamp && transform.parent.tag == "Player2" && Input.GetButton("Fire2"))
+                else if (Time.time >= reloadTimeStamp && transform.parent.tag == "Player2" && Input.GetButton("Fire2"))
                 {
                     StartCoroutine(Shoot1());
-                    timestamp = Time.time + timeBetweenShots;
+                    reloadTimeStamp = Time.time + fireRate;
                 }
             }
             else if(!Player1Script.alive && transform.parent.tag == "Player1")
@@ -77,16 +84,16 @@ public class Pistol : MonoBehaviour
                     StartCoroutine(Reload2());
                     return;
                 }
-                if (Time.time >= timestamp && transform.parent.tag == "Player1" && Input.GetButton("Fire1"))
+                if (Time.time >= reloadTimeStamp && transform.parent.tag == "Player1" && Input.GetButton("Fire1"))
                 {
                     StartCoroutine(Shoot2());
-                    timestamp = Time.time + timeBetweenShots;
+                    reloadTimeStamp = Time.time + fireRate;
                     Debug.Log(currentAmmoPlayer2);
                 }
-                else if (Time.time >= timestamp && transform.parent.tag == "Player2" && Input.GetButton("Fire2"))
+                else if (Time.time >= reloadTimeStamp && transform.parent.tag == "Player2" && Input.GetButton("Fire2"))
                 {
                     StartCoroutine(Shoot2());
-                    timestamp = Time.time + timeBetweenShots;
+                    reloadTimeStamp = Time.time + fireRate;
                 }
             }
             else if (!Player2Script.alive && transform.parent.tag == "Player2")
@@ -116,14 +123,14 @@ public class Pistol : MonoBehaviour
             Debug.Log("Line sent out");
             lineRenderer.SetPosition(1, hitInfo.point);
             Debug.Log("Position set");
-            FindObjectOfType<AudioManager>().Play("PistolShoot");
+            FindObjectOfType<AudioManager>().Play(shootAudio);
         }
 
         else
         {
             lineRenderer.SetPosition(0, firePoint.position);                   
             lineRenderer.SetPosition(1, firePoint.position + firePoint.right * 100);
-            FindObjectOfType<AudioManager>().Play("PistolShoot");
+            FindObjectOfType<AudioManager>().Play(shootAudio);
         }
 
         lineRenderer.enabled = true;
@@ -154,14 +161,14 @@ public class Pistol : MonoBehaviour
             Debug.Log("Line sent out");
             lineRenderer.SetPosition(1, hitInfo.point);
             Debug.Log("Position set");
-            FindObjectOfType<AudioManager>().Play("PistolShoot");
+            FindObjectOfType<AudioManager>().Play(shootAudio);
         }
 
         else
         {
             lineRenderer.SetPosition(0, firePoint.position);
             lineRenderer.SetPosition(1, firePoint.position + firePoint.right * 100);
-            FindObjectOfType<AudioManager>().Play("PistolShoot");
+            FindObjectOfType<AudioManager>().Play(shootAudio);
         }
 
         lineRenderer.enabled = true;
@@ -175,7 +182,7 @@ public class Pistol : MonoBehaviour
 
     IEnumerator Reload1()
     {
-        FindObjectOfType<AudioManager>().Play("PistolReload");
+        FindObjectOfType<AudioManager>().Play(reloadAudio);
         isReloading = true;
         Debug.Log("Reloading...");
         yield return new WaitForSeconds(reloadTime);
@@ -185,7 +192,7 @@ public class Pistol : MonoBehaviour
 
     IEnumerator Reload2()
     {
-        FindObjectOfType<AudioManager>().Play("PistolReload");
+        FindObjectOfType<AudioManager>().Play(reloadAudio);
         isReloading = true;
         Debug.Log("Reloading...");
         yield return new WaitForSeconds(reloadTime);
