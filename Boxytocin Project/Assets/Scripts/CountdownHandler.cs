@@ -9,7 +9,7 @@ public class CountdownHandler : MonoBehaviour
     public static bool gameOver = false;
 
     void Start()
-    {
+    {;
         timeText = GetComponent<TMPro.TMP_Text>();
     }
 

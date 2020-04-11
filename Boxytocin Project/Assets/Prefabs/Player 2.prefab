@@ -34,7 +34,6 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 8084755234855732416}
-  - {fileID: 2557046636643018761}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -127,6 +126,7 @@ MonoBehaviour:
   respawnPoint2: {fileID: 0}
   currentHealth: 0
   healthbar: {fileID: 5378604025138608058}
+  weapon: {fileID: 0}
 --- !u!61 &4426040820765856416
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -185,96 +185,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   MainCamera: {fileID: 0}
---- !u!1001 &4426040821523772995
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 4426040820765856423}
-    m_Modifications:
-    - target: {fileID: 2166232464769130056, guid: f7cd30aa962d340bebeaac67160eaf2e,
-        type: 3}
-      propertyPath: shootAudio
-      value: PistolShoot
-      objectReference: {fileID: 0}
-    - target: {fileID: 2166232464769130056, guid: f7cd30aa962d340bebeaac67160eaf2e,
-        type: 3}
-      propertyPath: reloadAudio
-      value: PistolReload
-      objectReference: {fileID: 0}
-    - target: {fileID: 2166232464769130058, guid: f7cd30aa962d340bebeaac67160eaf2e,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: -0.71
-      objectReference: {fileID: 0}
-    - target: {fileID: 2166232464769130058, guid: f7cd30aa962d340bebeaac67160eaf2e,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2166232464769130058, guid: f7cd30aa962d340bebeaac67160eaf2e,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2166232464769130058, guid: f7cd30aa962d340bebeaac67160eaf2e,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2166232464769130058, guid: f7cd30aa962d340bebeaac67160eaf2e,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2166232464769130058, guid: f7cd30aa962d340bebeaac67160eaf2e,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2166232464769130058, guid: f7cd30aa962d340bebeaac67160eaf2e,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2166232464769130058, guid: f7cd30aa962d340bebeaac67160eaf2e,
-        type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2166232464769130058, guid: f7cd30aa962d340bebeaac67160eaf2e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2166232464769130058, guid: f7cd30aa962d340bebeaac67160eaf2e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 180
-      objectReference: {fileID: 0}
-    - target: {fileID: 2166232464769130058, guid: f7cd30aa962d340bebeaac67160eaf2e,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 2166232464769130059, guid: f7cd30aa962d340bebeaac67160eaf2e,
-        type: 3}
-      propertyPath: m_SortingOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2166232464769130061, guid: f7cd30aa962d340bebeaac67160eaf2e,
-        type: 3}
-      propertyPath: m_Name
-      value: Pistol
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: f7cd30aa962d340bebeaac67160eaf2e, type: 3}
---- !u!4 &2557046636643018761 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2166232464769130058, guid: f7cd30aa962d340bebeaac67160eaf2e,
-    type: 3}
-  m_PrefabInstance: {fileID: 4426040821523772995}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &6402190139673267348
 PrefabInstance:
   m_ObjectHideFlags: 0

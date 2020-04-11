@@ -53,6 +53,11 @@ public class BaseWeapon : MonoBehaviour
                     StartCoroutine(Reload1());
                     return;
                 }
+                if (currentAmmoPlayer1 < maxAmmo && Input.GetKeyDown(KeyCode.R))
+                {
+                    StartCoroutine(Reload1());
+                    return;
+                }
                 if (Time.time >= reloadTimeStamp && transform.parent.tag == "Player1" && Input.GetButton("Fire1"))
                 {
                     StartCoroutine(Shoot1());
@@ -80,6 +85,11 @@ public class BaseWeapon : MonoBehaviour
                 }
 
                 if (currentAmmoPlayer2 <= 0)
+                {
+                    StartCoroutine(Reload2());
+                    return;
+                }
+                if (currentAmmoPlayer2 < maxAmmo && Input.GetKeyDown(KeyCode.Quote))
                 {
                     StartCoroutine(Reload2());
                     return;
