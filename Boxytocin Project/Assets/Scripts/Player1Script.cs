@@ -14,10 +14,11 @@ public class Player1Script : MonoBehaviour
     private BoxCollider2D box;
     private bool cannotMove;
     public HealthBar healthbar;
+    public Transform weapon;
     public static bool alive;
     public static int player1Score = 0;
-
     Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
