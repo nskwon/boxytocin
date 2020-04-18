@@ -45,12 +45,15 @@ public class PauseMenu : MonoBehaviour
         GameIsPaused = false;
         Player1Script.player1Score = 0;
         Player2Script.player2Score = 0;
+        if (!AudioManager.themePlaying)
+        {
+            FindObjectOfType<AudioManager>().PlayLoop("Theme");
+        }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }
     
     public void QuitGame()
     {
-
         Application.Quit();
     }
 

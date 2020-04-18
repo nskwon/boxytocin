@@ -10,6 +10,7 @@ public class Player2Script : MonoBehaviour
     public Transform respawnPoint2;
     public int currentHealth;
     private Vector2 movement;
+    private Vector3 lastDir;
     private Rigidbody2D rb;
     private BoxCollider2D box;
     private bool cannotMove;
@@ -18,6 +19,7 @@ public class Player2Script : MonoBehaviour
     public static bool alive;
     public static int player2Score;
     Animator anim;
+    public float dashDistance = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -50,6 +52,11 @@ public class Player2Script : MonoBehaviour
                     StartCoroutine("Respawn");
                 }
 
+                if (Input.GetKeyDown(KeyCode.M))
+                {
+                    handleDash();
+                }
+
                 //Movement Animations
                 if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.UpArrow))
                 {
@@ -62,8 +69,7 @@ public class Player2Script : MonoBehaviour
                     anim.SetBool("Left", false);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", false);
-
-
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.LeftArrow) && Input.GetKey(KeyCode.RightArrow) && Input.GetKey(KeyCode.DownArrow))
                 {
@@ -76,7 +82,7 @@ public class Player2Script : MonoBehaviour
                     anim.SetBool("Left", false);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", false);
-
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftArrow))
                 {
@@ -89,7 +95,7 @@ public class Player2Script : MonoBehaviour
                     anim.SetBool("Left", true);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", false);
-
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.RightArrow))
                 {
@@ -102,7 +108,7 @@ public class Player2Script : MonoBehaviour
                     anim.SetBool("Left", false);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", true);
-
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.LeftArrow))
                 {
@@ -115,7 +121,7 @@ public class Player2Script : MonoBehaviour
                     anim.SetBool("Left", false);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", false);
-
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.UpArrow) && Input.GetKey(KeyCode.RightArrow))
                 {
@@ -128,7 +134,7 @@ public class Player2Script : MonoBehaviour
                     anim.SetBool("Left", false);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", false);
-
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.RightArrow))
                 {
@@ -141,7 +147,7 @@ public class Player2Script : MonoBehaviour
                     anim.SetBool("Left", false);
                     anim.SetBool("DownRight", true);
                     anim.SetBool("Right", false);
-
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.DownArrow) && Input.GetKey(KeyCode.LeftArrow))
                 {
@@ -154,7 +160,7 @@ public class Player2Script : MonoBehaviour
                     anim.SetBool("Left", false);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", false);
-
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.UpArrow))
                 {
@@ -167,7 +173,7 @@ public class Player2Script : MonoBehaviour
                     anim.SetBool("Left", false);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", false);
-
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.DownArrow))
                 {
@@ -180,7 +186,7 @@ public class Player2Script : MonoBehaviour
                     anim.SetBool("Left", false);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", false);
-
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.RightArrow))
                 {
@@ -193,7 +199,7 @@ public class Player2Script : MonoBehaviour
                     anim.SetBool("Left", false);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", true);
-
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.LeftArrow))
                 {
@@ -206,7 +212,7 @@ public class Player2Script : MonoBehaviour
                     anim.SetBool("Left", true);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", false);
-
+                    lastDir = (Vector3)movement;
                 }
             }
         }
@@ -264,6 +270,11 @@ public class Player2Script : MonoBehaviour
         currentHealth = maxHealth;
         healthbar.SetHealth(currentHealth);
         alive = true;
+    }
+
+    private void handleDash()
+    {
+        transform.position += lastDir * dashDistance;
     }
 
 }
