@@ -10,6 +10,7 @@ public class Player1Script : MonoBehaviour
     public int currentHealth;
     public Transform respawnPoint1;
     private Vector2 movement;
+    private Vector3 lastDir;
     private Rigidbody2D rb;
     private BoxCollider2D box;
     private bool cannotMove;
@@ -18,6 +19,7 @@ public class Player1Script : MonoBehaviour
     public static bool alive;
     public static int player1Score = 0;
     Animator anim;
+    public float dashDistance = 5.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -41,12 +43,16 @@ public class Player1Script : MonoBehaviour
                 movement.x = Input.GetAxisRaw("Horizontal1");
                 movement.y = Input.GetAxisRaw("Vertical1");
                 cannotMove = CheckCollisions(box, movement, 0.05f);
-
                 if (currentHealth <= 0)
                 {
                     alive = false;
                     Player2Script.player2Score++;
                     StartCoroutine("Respawn");
+                }
+
+                if (Input.GetKeyDown(KeyCode.LeftShift))
+                {
+                    handleDash();
                 }
 
                 //Movement Animations
@@ -60,6 +66,7 @@ public class Player1Script : MonoBehaviour
                     anim.SetBool("Left", false);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", false);
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.A) && Input.GetKey(KeyCode.D) && Input.GetKey(KeyCode.S))
                 {
@@ -71,6 +78,7 @@ public class Player1Script : MonoBehaviour
                     anim.SetBool("Left", false);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", false);
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
                 {
@@ -82,6 +90,7 @@ public class Player1Script : MonoBehaviour
                     anim.SetBool("Left", true);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", false);
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
                 {
@@ -93,6 +102,7 @@ public class Player1Script : MonoBehaviour
                     anim.SetBool("Left", false);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", true);
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.A))
                 {
@@ -104,6 +114,7 @@ public class Player1Script : MonoBehaviour
                     anim.SetBool("Left", false);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", false);
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.W) && Input.GetKey(KeyCode.D))
                 {
@@ -115,6 +126,7 @@ public class Player1Script : MonoBehaviour
                     anim.SetBool("Left", false);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", false);
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.D))
                 {
@@ -126,6 +138,7 @@ public class Player1Script : MonoBehaviour
                     anim.SetBool("Left", false);
                     anim.SetBool("DownRight", true);
                     anim.SetBool("Right", false);
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.S) && Input.GetKey(KeyCode.A))
                 {
@@ -137,6 +150,7 @@ public class Player1Script : MonoBehaviour
                     anim.SetBool("Left", false);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", false);
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.W))
                 {
@@ -148,6 +162,7 @@ public class Player1Script : MonoBehaviour
                     anim.SetBool("Left", false);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", false);
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.S))
                 {
@@ -159,6 +174,7 @@ public class Player1Script : MonoBehaviour
                     anim.SetBool("Left", false);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", false);
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.D))
                 {
@@ -170,6 +186,7 @@ public class Player1Script : MonoBehaviour
                     anim.SetBool("Left", false);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", true);
+                    lastDir = (Vector3)movement;
                 }
                 else if (Input.GetKey(KeyCode.A))
                 {
@@ -181,6 +198,7 @@ public class Player1Script : MonoBehaviour
                     anim.SetBool("Left", true);
                     anim.SetBool("DownRight", false);
                     anim.SetBool("Right", false);
+                    lastDir = (Vector3)movement;
                 }
             }
         }
@@ -239,6 +257,11 @@ public class Player1Script : MonoBehaviour
         currentHealth = maxHealth;
         healthbar.SetHealth(currentHealth);
         alive = true;
+    }
+
+    private void handleDash()
+    {
+        transform.position += lastDir * dashDistance;
     }
 
 }
