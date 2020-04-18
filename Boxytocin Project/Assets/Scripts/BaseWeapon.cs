@@ -24,12 +24,12 @@ public class BaseWeapon : MonoBehaviour
 
     private void Start()
     {
-        if(currentAmmoPlayer1 == -1 && transform.parent.tag == "Player1")
+        if(currentAmmoPlayer1 != maxAmmo && transform.parent.tag == "Player1")
         {
             currentAmmoPlayer1 = maxAmmo;
             weaponName1 = this.name;
         }
-        if(currentAmmoPlayer2 == -1 && transform.parent.tag == "Player2")
+        if(currentAmmoPlayer2 !=maxAmmo && transform.parent.tag == "Player2")
         {
             currentAmmoPlayer2 = maxAmmo;
             weaponName2 = this.name;
