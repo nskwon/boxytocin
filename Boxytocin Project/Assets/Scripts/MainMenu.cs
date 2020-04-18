@@ -4,10 +4,15 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 public class MainMenu : MonoBehaviour
 {
+    public void Start()
+    {
+
+    }
     public void PlayGame()
     {
+        FindObjectOfType<AudioManager>().Stop("Theme");
+        AudioManager.themePlaying = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
-
     }
 
     public void QuitGame()

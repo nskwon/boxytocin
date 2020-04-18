@@ -19,7 +19,7 @@ public class Player1Script : MonoBehaviour
     public static bool alive;
     public static int player1Score = 0;
     Animator anim;
-    public float dashDistance = 5.0f;
+    public float dashDistance = 1.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -43,6 +43,7 @@ public class Player1Script : MonoBehaviour
                 movement.x = Input.GetAxisRaw("Horizontal1");
                 movement.y = Input.GetAxisRaw("Vertical1");
                 cannotMove = CheckCollisions(box, movement, 0.05f);
+
                 if (currentHealth <= 0)
                 {
                     alive = false;

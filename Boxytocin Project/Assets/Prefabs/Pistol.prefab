@@ -102,6 +102,11 @@ MonoBehaviour:
   damage: 10
   impactEffect: {fileID: 0}
   lineRenderer: {fileID: 3503780387562536637}
+  fireRate: 0.5
+  maxAmmo: 10
+  reloadTime: 3
+  shootAudio: PistolShoot
+  reloadAudio: PistolReload
 --- !u!114 &2166232464769130057
 MonoBehaviour:
   m_ObjectHideFlags: 0
