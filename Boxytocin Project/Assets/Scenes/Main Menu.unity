@@ -5434,7 +5434,7 @@ PrefabInstance:
     - target: {fileID: 1860389420901549988, guid: af483f5bf15063a469e323335a4dbdbd,
         type: 3}
       propertyPath: sounds.Array.size
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 1860389420901549988, guid: af483f5bf15063a469e323335a4dbdbd,
         type: 3}
@@ -5515,6 +5515,31 @@ PrefabInstance:
         type: 3}
       propertyPath: sounds.Array.data[2].loop
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1860389420901549988, guid: af483f5bf15063a469e323335a4dbdbd,
+        type: 3}
+      propertyPath: sounds.Array.data[5].clip
+      value: 
+      objectReference: {fileID: 8300000, guid: 1cee10496812e214c8a06bba1db682c2, type: 3}
+    - target: {fileID: 1860389420901549988, guid: af483f5bf15063a469e323335a4dbdbd,
+        type: 3}
+      propertyPath: sounds.Array.data[5].name
+      value: PlayTheme
+      objectReference: {fileID: 0}
+    - target: {fileID: 1860389420901549988, guid: af483f5bf15063a469e323335a4dbdbd,
+        type: 3}
+      propertyPath: sounds.Array.data[5].volume
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 1860389420901549988, guid: af483f5bf15063a469e323335a4dbdbd,
+        type: 3}
+      propertyPath: sounds.Array.data[5].pitch
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 1860389420901549988, guid: af483f5bf15063a469e323335a4dbdbd,
+        type: 3}
+      propertyPath: sounds.Array.data[5].loop
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 1860389420901549989, guid: af483f5bf15063a469e323335a4dbdbd,
         type: 3}

@@ -48,6 +48,7 @@ public class PauseMenu : MonoBehaviour
         if (!AudioManager.themePlaying)
         {
             FindObjectOfType<AudioManager>().PlayLoop("Theme");
+            FindObjectOfType<AudioManager>().Stop("PlayTheme");
         }
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex - 1);
     }

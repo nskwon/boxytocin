@@ -12,6 +12,7 @@ public class MainMenu : MonoBehaviour
     {
         FindObjectOfType<AudioManager>().Stop("Theme");
         AudioManager.themePlaying = false;
+        FindObjectOfType<AudioManager>().PlayLoop("PlayTheme");
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
     }
 
