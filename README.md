@@ -1,2 +1,2 @@
 # Boxytocin
-Two player roguelike game on the same device
+Two player 1v1 game with boxes
