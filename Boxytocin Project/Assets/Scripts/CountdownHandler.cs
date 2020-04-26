@@ -36,6 +36,10 @@ public class CountdownHandler : MonoBehaviour
                 timeText.text = "You both tied? Wow you're both noobs! HAHA";
             }
         }
+        else if (PauseMenu.GameIsPaused)
+        {
+            Time.timeScale = 0f;
+        }
         else
         {
             Time.timeScale = 1.0f;
